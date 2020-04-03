@@ -8,6 +8,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import com.qiang.customviewlx.R;
 
 /**
  * @author qhc
@@ -39,4 +42,5 @@ public class ColorView extends View {
         paint.setColor(Color.YELLOW);
         canvas.drawRect(0, 0, getWidth(), getHeight() /2, paint);
     }
+
 }

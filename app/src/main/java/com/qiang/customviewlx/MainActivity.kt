@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_color_view))
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_circle_view))
+        fragments.add(ExampleFragment.newInstance(R.layout.fragment_pie_view))
 
         return fragments
     }
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         titles.add("ColorView")
         titles.add("CircleView")
+        titles.add("PieView")
 
         return titles
     }
