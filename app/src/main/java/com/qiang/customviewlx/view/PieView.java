@@ -65,7 +65,7 @@ public class PieView extends View {
         canvas.drawArc(rectF2, 180 + 0.5f, 120 - 0.5f, true, paint);
         paint.setColor(Color.BLACK);
         paint.setTextSize(27);
-        canvas.drawText("饼图", rectFWith / 2 + rectFWith /2 * 0.9f, getWidth() * 1.4f/ 8 + rectFWith, paint);
+        canvas.drawText("饼图", rectFWith / 2 + rectFWith /2 * 0.9f, getWidth() * 1.7f/ 8 + rectFWith, paint);
 
         float horizontalWith = ViewUtil.dip2px(getContext(), 30);
 
