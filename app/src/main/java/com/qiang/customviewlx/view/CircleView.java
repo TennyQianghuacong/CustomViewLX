@@ -5,13 +5,17 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.util.AttributeSet;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.internal.ViewUtils;
+import com.qiang.customviewlx.R;
 
 /**
  * @author qhc
@@ -55,14 +59,16 @@ public class CircleView extends View {
         canvas.drawCircle(getWidth() / 4, getWidth() * 3 / 4, radius, paint);
 
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(Color.BLACK);
-        canvas.drawCircle(getWidth() * 3 / 4, getWidth() * 3 / 4, radius, paint);
+        Shader radialGradient = new RadialGradient(getWidth() * 3/ 4, getWidth() *3 / 4, radius, ContextCompat.getColor(getContext(), R.color.green_100), ContextCompat.getColor(getContext(), R.color.green_700), Shader.TileMode.CLAMP);
+        paint.setShader(radialGradient);
+        canvas.drawCircle(getWidth() * 3/ 4, getWidth() *3 / 4, radius, paint);
 
-        paint.setColor(Color.WHITE);
-        canvas.drawCircle(getWidth() * 3 / 4, getWidth() * 3 / 4, radius * 3 / 4, paint);
-
-        Shader shader = new LinearGradient(getWidth() / 4 - radius, getWidth() * 5 / 4 - radius, getWidth() / 4 + radius , getWidth() * 5 / 4 + radius , Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
-        paint.setShader(shader);
+        Shader linearGradient = new LinearGradient(getWidth() / 4 - radius, getWidth() * 5 / 4 - radius, getWidth() / 4 + radius , getWidth() * 5 / 4 + radius , Color.RED, Color.BLUE, Shader.TileMode.CLAMP);
+        paint.setShader(linearGradient);
         canvas.drawCircle(getWidth() / 4, getWidth() * 5 / 4, radius, paint);
+
+        Shader sweepGradient = new SweepGradient(getWidth() *3 / 4, getWidth() * 5 / 4, Color.RED, Color.BLUE);
+        paint.setShader(sweepGradient);
+        canvas.drawCircle(getWidth() *3 / 4, getWidth() * 5 / 4, radius, paint);
     }
 }
