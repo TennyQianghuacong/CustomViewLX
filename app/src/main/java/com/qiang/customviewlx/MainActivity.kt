@@ -54,9 +54,10 @@ class MainActivity : AppCompatActivity() {
     private fun generateFragments(): ArrayList<Fragment> {
         val fragments = ArrayList<Fragment>()
 
-        fragments.add(ExampleFragment.newInstance(R.layout.fragment_color_view))
-        fragments.add(ExampleFragment.newInstance(R.layout.fragment_circle_view))
+        fragments.add(ExampleFragment.newInstance(R.layout.fragment_text_lx_view))
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_pie_view))
+        fragments.add(ExampleFragment.newInstance(R.layout.fragment_circle_view))
+        fragments.add(ExampleFragment.newInstance(R.layout.fragment_color_view))
 
         return fragments
     }
@@ -64,9 +65,10 @@ class MainActivity : AppCompatActivity() {
     private fun generateTitles(): List<String> {
         val titles = ArrayList<String>()
 
-        titles.add("ColorView")
-        titles.add("CircleView")
+        titles.add("TextLXView")
         titles.add("PieView")
+        titles.add("CircleView")
+        titles.add("ColorView")
 
         return titles
     }
