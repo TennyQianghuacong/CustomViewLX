@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     private fun generateFragments(): ArrayList<Fragment> {
         val fragments = ArrayList<Fragment>()
 
+        fragments.add(ExampleFragment.newInstance(R.layout.fragment_clip_lx_view))
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_bitmap_lx_view))
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_shader_lx_view))
         fragments.add(ExampleFragment.newInstance(R.layout.fragment_text_lx_view))
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
     private fun generateTitles(): List<String> {
         val titles = ArrayList<String>()
 
+        titles.add("ClipLXView")
         titles.add("BitMapLXView")
         titles.add("ShaderLXView")
         titles.add("TextLXView")
