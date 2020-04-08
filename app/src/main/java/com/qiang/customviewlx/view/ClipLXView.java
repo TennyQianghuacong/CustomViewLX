@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -82,6 +83,9 @@ public class ClipLXView extends View {
         path.lineTo(pointX, pointY);
         path.close();
 
+        /**
+         * 平移和旋转的效果解析
+         */
         //平移后再做旋转 和旋转之后再做平移是不一样的两个效果  平移，是按照坐标系平移， 旋转是整个坐标系旋转！
         canvas.save();
         canvas.translate(600 , 0);
@@ -94,5 +98,48 @@ public class ClipLXView extends View {
         canvas.drawBitmap(bitmap, 0, bitmapHeight, paint);
         canvas.restore();
 
+        /**
+         * scale解析
+         */
+        //scale(scaleX, scaleY) 是以坐标0,0为点进行缩放
+        //scale(scaleX, scaleY, x, y) 是以坐标x,y为点进行缩放  可以拆分成先移动到(x,y), 再以（0,0）为点进行缩放，再平移到（-x,-y)（缩放之后的坐标也是缩放了的）
+        canvas.save();
+        canvas.scale(0.5f, 0.5f, bitmapWith, bitmapHeight * 2);
+        canvas.drawBitmap(bitmap, 0, bitmapHeight , paint);
+        canvas.restore();
+
+        //同效果拆分：
+        canvas.save();
+
+        canvas.translate(bitmapWith, bitmapHeight * 2);
+        canvas.drawBitmap(bitmap, 0, bitmapHeight , paint);
+
+        canvas.scale(0.5f, 0.5f);
+        canvas.drawBitmap(bitmap, 0, bitmapHeight , paint);
+
+     /* 这一步执行完之后就是上面的   canvas.scale(0.5f, 0.5f, bitmapWith, bitmapHeight * 2)  效果
+        canvas.translate(-bitmapWith, -bitmapHeight * 2);
+        canvas.drawBitmap(bitmap, 0, bitmapHeight , paint);*/
+
+        canvas.restore();
+
+
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getWidth());
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.RED);
+        paint.setStrokeCap(Paint.Cap.BUTT);
+        /**
+         * skew
+         */
+        canvas.save();
+
+        canvas.skew(1f, 1f);
+      //  canvas.drawRect(rect, paint);
+      //  canvas.drawBitmap(bitmap, 0, 0 , paint);
+        canvas.drawPoint(bitmap.getWidth(), bitmap.getWidth(), paint);
+
+        canvas.restore();
+
+        canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getWidth() * 3, paint);
     }
 }
