@@ -48,7 +48,7 @@ public class ClipLXView extends View {
         int bitmapWith = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
 
-        canvas.drawBitmap(bitmap, 0, 0, paint);
+    //    canvas.drawBitmap(bitmap, 0, 0, paint);
 
         canvas.save();
 
@@ -82,7 +82,14 @@ public class ClipLXView extends View {
         path.lineTo(pointX, pointY);
         path.close();
 
+        //平移后再做旋转 和旋转之后再做平移是不一样的两个效果  平移，是按照坐标系平移， 旋转是整个坐标系旋转！
         canvas.save();
+        canvas.translate(600 , 0);
+        canvas.rotate(45, bitmapWith / 2, bitmapHeight * 3 / 2);
+
+       /*   和上面那种，效果一样，对坐标系的旋转
+        canvas.rotate(45, bitmapWith / 2, bitmapHeight * 3 / 2);
+        canvas.translate((float) (600 * Math.sin(Math.PI / 4)), (float) (- 600 * Math.sin(Math.PI / 4)));*/
         canvas.clipOutPath(path);
         canvas.drawBitmap(bitmap, 0, bitmapHeight, paint);
         canvas.restore();
