@@ -104,7 +104,19 @@ public class MatrixLXView extends View {
         int right = left + bitmapWith;
         int bottom = top + bitmapHeight;
 
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(left, top, right, bottom, paint);
 
+        float[] pointsSrc = {left, top, right, top, left, bottom, right, bottom};
+        float[] pointsDst = {left - 10, top + 50, right + 120, top - 90, left + 20, bottom + 30, right + 20, bottom + 60};
+
+        matrix.setPolyToPoly(pointsSrc, 0, pointsDst, 0, 4);
+        Log.e("QHC", matrix.toShortString());
+
+        canvas.save();
+        canvas.concat(matrix);  //用 Canvas 当前的变换矩阵和 Matrix 相乘
+        canvas.drawRect(left, top, right, bottom, paint);
+        canvas.restore();
 
     }
 }
